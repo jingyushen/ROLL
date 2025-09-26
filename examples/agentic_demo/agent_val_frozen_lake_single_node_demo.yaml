@@ -59,6 +59,7 @@ whiten_advantages: true
 entropy_loss_coef: 0
 max_grad_norm: 1.0
 
+model_download_type: MODELSCOPE
 pretrain: Qwen/Qwen2.5-0.5B-Instruct
 reward_pretrain: Qwen/Qwen2.5-0.5B-Instruct
 
@@ -134,11 +135,11 @@ reward_normalization:
 train_env_manager:
   format_penalty: -0.15 # sokoban env penalty_for_step=-0.1
   max_env_num_per_worker: 16
-  num_env_groups: 1
+  num_env_groups: 2
   # under the same group, the env config and env seed are ensured to be equal
-  group_size: 1
+  group_size: 8
   tags: [FrozenLake]
-  num_groups_partition: [1] # If not set, all env names divide nums equally. Under the same group, the env config and env seed (prompt) are equal in each generation
+  num_groups_partition: [2] # If not set, all env names divide nums equally. Under the same group, the env config and env seed (prompt) are equal in each generation
 
 val_env_manager:
   max_env_num_per_worker: 1
